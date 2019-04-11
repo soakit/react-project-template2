@@ -1,10 +1,7 @@
 import { Toast, Modal } from 'antd-mobile';
-import { setAuthority } from '@/utils/authority';
 import initWx from '@/utils/wx';
 import debug from '@/utils/debug';
 import './global.less';
-
-setAuthority('loginUser');
 
 function isWeixn() {
   const ua = navigator.userAgent.toLowerCase();

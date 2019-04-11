@@ -17,13 +17,13 @@ export default {
 	effects: {
 		* login({ payload }, { call, put }) {
       const response = yield call(login, payload);
-			// Login successfully
+      // Login successfully
 			if (response.code === 1) {
         yield put({
         	type: 'changeLoginStatus',
         	payload: {
         		status: 'ok',
-        		currentAuthority: ['loginUser'],
+        		currentAuthority: response.data.authority,
         	},
         });
 				reloadAuthorized();

@@ -38,15 +38,7 @@ class BasicLayout extends PureComponent {
       location: { pathname },
       route: { routes },
     } = this.props;
-    let node;
-    findNodeByRecursion(routes, {
-    	idKey: 'path',
-    	childrenKey: 'routes',
-    }, pathname, false, (n) => {
-    	node = n;
-    });
-    const authority= node && node.authority;
-    debugger
+    const routerConfig = this.getRouterAuthority(pathname, routes);
     const { href } = window.location; // 浏览器地址栏中地址
     if (currHref !== href) {
       // currHref 和 href 不一致时说明进行了页面跳转
@@ -67,7 +59,7 @@ class BasicLayout extends PureComponent {
         transitionLeaveTimeout={300}
       >
         <div key={pathname} style={{ position: 'absolute', width: '100%', height: '100%' }}>
-          <Authorized authority={authority} noMatch={<Redirect to="/home" />}>
+          <Authorized authority={routerConfig} noMatch={<Redirect to="/home" />}>
             {children}
           </Authorized>
         </div>

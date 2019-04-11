@@ -58,7 +58,6 @@ class TabBarLayout extends React.PureComponent {
   getChildrenContent = (children, pathname, routes) => {
     const { visible } = this.state;
     const tabBarItems = this.getTabBarItems(routes);
-    debugger;
     const routerConfig = this.getRouterAuthority(pathname, routes);
     let tabBarItem = [];
     if (tabBarItems && tabBarItems.length > 0) {

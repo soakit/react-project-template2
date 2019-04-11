@@ -3,6 +3,7 @@ export default [
   {
     path: '/user',
     component: '../layouts/UserLayout',
+    authority: ['guest'],
     routes: [
       { path: '/user', redirect: '/user/login' },
       { path: '/user/login', component: './User/Login' },
@@ -13,10 +14,50 @@ export default [
     path: '/',
     component: '../layouts/BasicLayout',
     Routes: ['src/pages/Authorized'],
-    authority: ['loginUser'],
+    authority: ['user'],
     routes: [
       { path: '/', redirect: '/home' },
-      { path: '/home', component: './home/index', title: '首页' },
+      {
+        path: '/home',
+        component: './home/index',
+        title: '首页',
+      },
+      // TabBar
+      {
+        path: '/tabbar',
+        component: '../layouts/TabBarLayout',
+        routes: [
+          { path: '/tabbar', redirect: '/tabbar/index' },
+          {
+            authority: ['admin'],
+            path: '/tabbar/index',
+            title: 'index',
+            component: './tabbar/index',
+            iconName: 'alipay',
+          },
+          {
+            authority: ['admin'],
+            path: '/tabbar/koubei',
+            title: 'Koubei',
+            component: './tabbar/Koubei',
+            iconName: 'koubei',
+          },
+          {
+            authority: ['admin'],
+            path: '/tabbar/friend',
+            title: 'Friend',
+            component: './tabbar/Friend',
+            iconName: 'friend',
+          },
+          {
+            authority: ['admin'],
+            path: '/tabbar/my',
+            title: 'My',
+            component: './tabbar/Koubei',
+            iconName: 'my',
+          },
+        ],
+      },
       {
         title: 'exception',
         path: '/exception',
@@ -42,36 +83,4 @@ export default [
       { path: '/404', component: '404' },
     ],
   },
-  /* // TabBar
-  {
-    path: '/tabbar',
-    component: '../layouts/TabBarLayout',
-    routes: [
-      { path: '/tabbar', redirect: '/tabbar/index' },
-      {
-        path: '/tabbar/index',
-        title: 'index',
-        component: './tabbar/index',
-        iconName: 'alipay',
-      },
-      {
-        path: '/tabbar/koubei',
-        title: 'Koubei',
-        component: './tabbar/Koubei',
-        iconName: 'koubei',
-      },
-      {
-        path: '/tabbar/friend',
-        title: 'Friend',
-        component: './tabbar/Friend',
-        iconName: 'friend',
-      },
-      {
-        path: '/tabbar/my',
-        title: 'My',
-        component: './tabbar/Koubei',
-        iconName: 'my',
-      },
-    ],
-  }, */
 ];
